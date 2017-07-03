@@ -75,6 +75,9 @@ function posicao_valida($origem, $destino)
 
 function movimentacao_diagonal_frente($origem, $destino)
 {
+    if (!posicao_valida($origem, $destino)) {
+        return false;
+    }
     $tabuleiro = getTabuleiro();
     $distancia_linha = $destino[0] - $origem[0];
     $distancia_coluna = $destino[1] - $origem[1];
