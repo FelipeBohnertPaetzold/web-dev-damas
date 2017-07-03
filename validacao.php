@@ -87,7 +87,7 @@ function movimentacao_diagonal_frente($origem, $destino)
     }
     if ($tabuleiro[$origem[0]][$origem[1]] == 'B') {
         if($distancia_linha != 1) {
-            echo '\n Tentou voltar a branca';
+            echo "\n Tentou voltar a branca";
             return false;
         }
     } else {
