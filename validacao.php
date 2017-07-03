@@ -50,15 +50,46 @@ function posicao_vazia($origem, $destino)
         echo  "\n Destino já ocupado!";
         return false;
     }
+    
     return true;
 }
 
 function posicao_valida($origem, $destino)
 {
+    if ($origem[1] % 2 == 0) {
+        if ($destino[1] % 2 == 0) {
+            echo "\n Destino invalido";
+            return false;
+        }
+    } else {
+        if ($destino[1] % 2 != 0) {
+            echo "\n Destino invalido";
+            return false;
+        }
+    }
     return true;
 }
 
 function movimentacao_diagonal_frente($origem, $destino)
 {
+    $tabuleiro = getTabuleiro();
+    $distancia_linha = $destino[0] - $origem[0];
+    $distancia_coluna = $origem[1] - $destino[1];
+    if($distancia_coluna != 1 && $distancia_coluna != -1) {
+        echo "\n Distancia coluna invalida";
+        return false;
+    }
+    if ($tabuleiro[$origem[0]][$origem[1]] == 'B') {
+        if($distancia_linha != 1) {
+            echo '\n Tentou voltar a branca';
+            return false;
+        }
+    }
+    if ($tabuleiro[$destino[0]][$destino[1]] == 'P') {
+        if($distancia_linha != -1) {
+            echo '\n Tentou voltar a preta';
+            return false;
+        }
+    }
     return true;
 }
