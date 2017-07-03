@@ -26,10 +26,16 @@ function validar_movimentacao($origem, $destino)
 
 function posicao_existente($origem, $destino)
 {
-    if($origem[0] > 7 || $origem[1] > 7 || $destino[0] > 7 || $destino[1] > 7) {
-        echo "\n Posicao inexistente!";
+    $tabuleiro = getTabuleiro();
+    if(!isset($tabuleiro[$origem[0]][$origem[1]])) {
+        echo "\n Origem invalida!";
         return false;
     }
+    if(!isset($tabuleiro[$destino[0]][$destino[1]])) {
+        echo "\n Destino invalido!";
+        return false;
+    }
+    
     return true;
 }
 
