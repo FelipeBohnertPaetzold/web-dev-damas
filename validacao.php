@@ -41,6 +41,9 @@ function posicao_existente($origem, $destino)
 
 function posicao_vazia($origem, $destino)
 {
+    if (!posicao_existente($origem, $destino)) {
+        return false;
+    }
     $tabuleiro = getTabuleiro();
     if(!$tabuleiro[$origem[0]][$origem[1]]) {
         echo "\n Origem vazia!";
@@ -74,7 +77,7 @@ function movimentacao_diagonal_frente($origem, $destino)
 {
     $tabuleiro = getTabuleiro();
     $distancia_linha = $destino[0] - $origem[0];
-    $distancia_coluna = $origem[1] - $destino[1];
+    $distancia_coluna = $destino[1] - $origem[1];
     if($distancia_coluna != 1 && $distancia_coluna != -1) {
         echo "\n Distancia coluna invalida";
         return false;
@@ -84,8 +87,7 @@ function movimentacao_diagonal_frente($origem, $destino)
             echo '\n Tentou voltar a branca';
             return false;
         }
-    }
-    if ($tabuleiro[$destino[0]][$destino[1]] == 'P') {
+    } else {
         if($distancia_linha != -1) {
             echo '\n Tentou voltar a preta';
             return false;
